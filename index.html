@@ -292,6 +292,85 @@
   .stat .n{ color:var(--accent); font-size:13px; display:block; margin-bottom:4px; }
   .stat .d{ color:var(--muted); font-size:12.5px; max-width:22ch; }
 
+  /* ---------- Roadmap ---------- */
+  .roadmap-list{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:var(--panel-line);
+    border:1px solid var(--panel-line);
+    margin-top:10px;
+  }
+  @media (max-width:760px){ .roadmap-list{ grid-template-columns:1fr; } }
+  .roadmap-card{
+    background:var(--bg);
+    padding:30px 30px 26px;
+  }
+  .roadmap-status{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--accent);
+    border:1px solid var(--accent-dim);
+    display:inline-block;
+    padding:3px 8px;
+    border-radius:2px;
+    margin-bottom:14px;
+  }
+  .roadmap-card h3{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:19px;
+    margin-bottom:10px;
+  }
+  .roadmap-card p{ color:var(--muted); font-size:14.5px; }
+  .roadmap-note{
+    margin-top:30px;
+    padding:20px 22px;
+    border:1px solid var(--panel-line);
+    background:var(--panel);
+    font-size:14px;
+    color:var(--muted);
+  }
+  .roadmap-note strong{ color:var(--text); }
+  .roadmap-note a{ color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent-dim); }
+
+  /* ---------- Team ---------- */
+  .team-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
+    gap:30px;
+    margin-top:10px;
+  }
+  .team-card{ display:flex; flex-direction:column; gap:14px; }
+  .team-avatar{
+    width:56px; height:56px;
+    border-radius:50%;
+    background:var(--panel);
+    border:1px solid var(--panel-line);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--serif);
+    font-size:19px;
+    color:var(--accent);
+  }
+  .team-card h3{ font-family:var(--serif); font-weight:500; font-size:19px; }
+  .team-role{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-top:2px;
+    display:block;
+  }
+  .team-card p{ color:var(--muted); font-size:14.5px; margin-top:4px; }
+  .team-empty{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--muted-dim);
+  }
+
   /* ---------- Ways to help ---------- */
   .help-list{
     display:grid;
@@ -444,6 +523,8 @@
     <button class="navtoggle" id="navToggle" aria-label="Toggle menu">&#9776;</button>
     <nav class="navlinks" id="navLinks">
       <a href="#mission">Mission</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#team">Team</a>
       <a href="#help">Ways to Help</a>
       <a href="#news">Updates</a>
       <a href="#contact">Contact</a>
@@ -504,6 +585,65 @@
         <div class="stat">
           <span class="n">Volunteer-run</span>
           <span class="d">Every hour comes from people who chose to give it</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section id="roadmap">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Roadmap</div>
+        <h2>What we're building toward</h2>
+        <p>We're a new, volunteer-run organization. These are the programs we're working to build partnerships and funding for — not services we operate today. We'll update this section honestly as each one moves from goal to reality.</p>
+      </div>
+      <div class="roadmap-list">
+        <div class="roadmap-card">
+          <span class="roadmap-status">Goal &middot; Not yet active</span>
+          <h3>Safe passage coordination</h3>
+          <p>Working toward partnerships with established, trusted organizations already coordinating safe passage through third-party countries — so we can responsibly refer people rather than duplicate work that experienced groups already do well.</p>
+        </div>
+        <div class="roadmap-card">
+          <span class="roadmap-status">Goal &middot; Not yet active</span>
+          <h3>Initial resettlement support</h3>
+          <p>Many people arrive without funds for housing, legal fees, or medical screening. We aim to eventually help fund these gaps directly — for now, we're building the financial and legal groundwork required to do that responsibly.</p>
+        </div>
+        <div class="roadmap-card">
+          <span class="roadmap-status">Goal &middot; Not yet active</span>
+          <h3>Interpretation, translation &amp; mentorship</h3>
+          <p>We want to pair new arrivals with professionals in relevant fields for 1:1 mentorship, alongside language support — helping people become self-reliant faster, not just housed.</p>
+        </div>
+        <div class="roadmap-card">
+          <span class="roadmap-status">Goal &middot; Not yet active</span>
+          <h3>Psychological recovery support</h3>
+          <p>Years under state propaganda and the trauma of escape can leave lasting effects. We want to help connect people with qualified trauma therapy and language training — delivered by licensed professionals, not by us directly.</p>
+        </div>
+      </div>
+      <div class="roadmap-note">
+        <strong>Need help right now, or know someone who does?</strong> These programs aren't active yet. Organizations already doing this work today include <a href="https://www.libertyinnorthkorea.org" target="_blank" rel="noopener">Liberty in North Korea (LiNK)</a>, <a href="https://pscore.org" target="_blank" rel="noopener">PSCORE</a>, and <a href="https://crossingbordersnk.org" target="_blank" rel="noopener">Crossing Borders</a> — please reach out to them directly.
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Team</div>
+        <h2>Who's behind this</h2>
+      </div>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">JS</div>
+          <div>
+            <h3>Jacob Schultz</h3>
+            <span class="team-role">Founder</span>
+          </div>
+          <p>I moved to Korea wanting to make the most of my time here — to leave the country a little better than I found it, not just pass through it. That intention led me, almost by accident, to a restaurant run by a North Korean woman who'd escaped the country decades earlier. Over the course of one meal, she told me what the crossing had actually cost her — and that even thirty years later, she was still adjusting. I paid my bill, walked out, and knew I'd found the cause I wanted to spend my time on. Silent Passage Project started from that conversation.</p>
+        </div>
+        <div class="team-card">
+          <span class="team-empty">— team growing, more to come —</span>
         </div>
       </div>
     </div>
@@ -585,9 +725,9 @@
 </main>
 
 <footer>
-  <div class="wrap footer-row">
+  <div class="wrap footer-row" style="flex-direction:column; align-items:flex-start; gap:8px;">
     <span>&copy; <span id="year"></span> Silent Passage Project</span>
-    <span>silentpassageproject.org</span>
+    <span><!-- TODO: replace with your exact LLC name + state --> Silent Passage Project, LLC &middot; [State] &middot; silentpassageproject.org</span>
   </div>
 </footer>
 
