@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Silent Passage Project</title>
 <meta name="description" content="Silent Passage Project supports people escaping North Korea — through information, advocacy, and community.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%230B1420'/%3E%3Cpath d='M6,29 C14,29 12,19 20,17 C28,15 26,8 34,7' fill='none' stroke='%238CA0B3' stroke-width='2.6' stroke-linecap='round'/%3E%3Ccircle cx='34' cy='7' r='3.4' fill='%23E8A54B'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -86,18 +88,34 @@
     margin:0 auto;
   }
   .logo{
-    font-family:var(--serif);
-    font-size:19px;
-    letter-spacing:0.01em;
     display:flex;
-    align-items:baseline;
-    gap:8px;
+    align-items:center;
+    gap:11px;
     text-decoration:none;
   }
-  .logo .mark{
+  .logo-icon{ width:27px; height:27px; flex-shrink:0; }
+  .logo-icon .lp-path{
+    fill:none;
+    stroke:var(--muted);
+    stroke-width:2;
+    stroke-linecap:round;
+  }
+  .logo-icon .lp-dot{ fill:var(--accent); }
+  .logo-text{
+    font-family:var(--serif);
+    font-size:18px;
+    letter-spacing:0.01em;
+    display:flex;
+    flex-direction:column;
+    line-height:1.05;
+  }
+  .logo-text .logo-sub{
     color:var(--accent);
     font-family:var(--mono);
-    font-size:13px;
+    font-size:9.5px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    margin-top:3px;
   }
   .navlinks{
     display:flex;
@@ -417,7 +435,13 @@
 
 <header>
   <div class="nav">
-    <a href="#top" class="logo">Silent Passage <span class="mark">// project</span></a>
+    <a href="#top" class="logo" aria-label="Silent Passage Project — home">
+      <svg class="logo-icon" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path class="lp-path" d="M4,30 C13,30 11,19 20,17 C29,15 27,7 35,6" />
+        <circle class="lp-dot" cx="35" cy="6" r="2.6" />
+      </svg>
+      <span class="logo-text">Silent Passage<span class="logo-sub">Project</span></span>
+    </a>
     <button class="navtoggle" id="navToggle" aria-label="Toggle menu">&#9776;</button>
     <nav class="navlinks" id="navLinks">
       <a href="#mission">Mission</a>
