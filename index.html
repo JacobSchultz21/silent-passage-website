@@ -336,6 +336,73 @@
   }
   .testimony-note strong{ color:var(--text); }
 
+  /* ---------- Pledge ---------- */
+  .pledge-section{
+    background:var(--panel);
+  }
+  .pledge-grid{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:60px;
+    align-items:start;
+  }
+  @media (max-width:900px){ .pledge-grid{ grid-template-columns:1fr; gap:40px; } }
+  .pledge-text p{
+    font-family:var(--serif);
+    font-size:18px;
+    line-height:1.7;
+    color:var(--text);
+    margin-bottom:20px;
+  }
+  .pledge-text p:last-of-type{ margin-bottom:0; }
+  .pledge-signoff{
+    margin-top:28px;
+    font-family:var(--mono);
+    font-size:13px;
+    letter-spacing:0.04em;
+    color:var(--accent);
+  }
+  .pledge-form-wrap{
+    background:var(--bg);
+    border:1px solid var(--panel-line);
+    padding:32px;
+  }
+  .pledge-form-wrap h3{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:20px;
+    margin-bottom:6px;
+  }
+  .pledge-form-wrap .pledge-sub{
+    color:var(--muted);
+    font-size:13.5px;
+    margin-bottom:22px;
+  }
+  .field-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  @media (max-width:480px){ .field-row{ grid-template-columns:1fr; } }
+  select{
+    background:var(--panel);
+    border:1px solid var(--panel-line);
+    color:var(--text);
+    font-family:var(--sans);
+    font-size:14.5px;
+    padding:13px 14px;
+    border-radius:2px;
+  }
+  select:focus{ border-color:var(--accent-dim); }
+  .pledge-thanks{
+    display:none;
+    font-family:var(--mono);
+    font-size:14px;
+    color:var(--accent);
+    line-height:1.6;
+  }
+  .hp-field{ position:absolute; left:-9999px; }
+
   /* ---------- Roadmap ---------- */
   .roadmap-list{
     display:grid;
@@ -606,6 +673,7 @@
     <nav class="navlinks" id="navLinks">
       <a href="#mission">Mission</a>
       <a href="#testimony">Testimony</a>
+      <a href="#pledge">Pledge</a>
       <a href="#roadmap">Roadmap</a>
       <a href="#team">Team</a>
       <a href="#help">Ways to Help</a>
@@ -709,6 +777,71 @@
       </div>
       <div class="testimony-note">
         <strong>A note on anonymity:</strong> names have been withheld and replaced with an initial and age to protect the individuals who shared these accounts.
+      </div>
+    </div>
+  </section>
+
+  <!-- PLEDGE -->
+  <section id="pledge" class="pledge-section">
+    <div class="wrap pledge-grid">
+      <div class="pledge-text">
+        <div class="eyebrow">Our Pledge</div>
+        <h2 style="margin-bottom:26px;">To those who've made the crossing, and to those still deciding to</h2>
+        <p>We see you as we would want to be seen ourselves: not as a statistic, not as a cautionary tale, but as someone building a life worth living.</p>
+        <p>We believe the right to think freely, speak freely, and go where you choose isn't something to be earned. It is already yours.</p>
+        <p>We believe no one should have to risk their life to claim rights that should have been theirs from the start.</p>
+        <p>We cannot know what the crossing has cost you. What we can do is keep showing up, in whatever ways are available to us, long after the story stops making headlines.</p>
+        <p>This is what we are committing to: funding what we can, connecting who we can, and staying involved for as long as it takes.</p>
+        <div class="pledge-signoff">함께, 자유를.</div>
+      </div>
+
+      <div class="pledge-form-wrap">
+        <h3>Sign the pledge</h3>
+        <p class="pledge-sub">Add your name. We'll follow up with ways to get involved based on how you'd like to help.</p>
+
+        <form name="pledge" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="pledgeForm">
+          <input type="hidden" name="form-name" value="pledge">
+          <p class="hp-field">
+            <label>Leave this field blank: <input name="bot-field"></label>
+          </p>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" name="firstName" required>
+            </div>
+            <div class="field">
+              <label for="lastName">Last Name</label>
+              <input type="text" id="lastName" name="lastName" required>
+            </div>
+          </div>
+
+          <div class="field" style="margin-top:18px;">
+            <label for="pledgeEmail">Email</label>
+            <input type="email" id="pledgeEmail" name="email" required>
+          </div>
+
+          <div class="field-row" style="margin-top:18px;">
+            <div class="field">
+              <label for="country">Country</label>
+              <input type="text" id="country" name="country" required>
+            </div>
+            <div class="field">
+              <label for="role">Role</label>
+              <select id="role" name="role" required>
+                <option value="" disabled selected>Select one</option>
+                <option value="Advocate">Advocate</option>
+                <option value="Fundraise">Fundraise</option>
+                <option value="Activist">Activist</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="send-btn" style="margin-top:22px;">Submit</button>
+        </form>
+
+        <p class="pledge-thanks" id="pledgeThanks">Thank you for signing the pledge. We'll be in touch about ways to get involved.</p>
       </div>
     </div>
   </section>
@@ -878,6 +1011,24 @@
     const subject = encodeURIComponent('Message from ' + name + ' via silentpassageproject.org');
     const body = encodeURIComponent(message + '\n\n' + name + ' (' + email + ')');
     window.location.href = 'mailto:hello@silentpassageproject.org?subject=' + subject + '&body=' + body;
+  });
+
+  const pledgeForm = document.getElementById('pledgeForm');
+  pledgeForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    const formData = new FormData(pledgeForm);
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData).toString()
+    })
+    .then(() => {
+      pledgeForm.style.display = 'none';
+      document.getElementById('pledgeThanks').style.display = 'block';
+    })
+    .catch(() => {
+      alert('Something went wrong submitting the pledge. Please try again, or email us directly.');
+    });
   });
 </script>
 
