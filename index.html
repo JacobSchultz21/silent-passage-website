@@ -292,6 +292,50 @@
   .stat .n{ color:var(--accent); font-size:13px; display:block; margin-bottom:4px; }
   .stat .d{ color:var(--muted); font-size:12.5px; max-width:22ch; }
 
+  /* ---------- Testimony ---------- */
+  .testimony-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:var(--panel-line);
+    border:1px solid var(--panel-line);
+    margin-top:10px;
+  }
+  @media (max-width:760px){ .testimony-grid{ grid-template-columns:1fr; } }
+  .testimony-card{
+    background:var(--bg);
+    padding:34px 32px;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+  .testimony-card blockquote{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:500;
+    font-size:19px;
+    line-height:1.55;
+    color:var(--text);
+    border-left:2px solid var(--accent-dim);
+    padding-left:18px;
+  }
+  .testimony-attr{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.04em;
+    color:var(--muted-dim);
+    padding-left:20px;
+  }
+  .testimony-note{
+    margin-top:30px;
+    padding:20px 22px;
+    border:1px solid var(--panel-line);
+    background:var(--panel);
+    font-size:13.5px;
+    color:var(--muted);
+  }
+  .testimony-note strong{ color:var(--text); }
+
   /* ---------- Roadmap ---------- */
   .roadmap-list{
     display:grid;
@@ -435,6 +479,44 @@
     padding:30px 0;
     border-top:1px solid var(--panel-line);
   }
+  .news-placeholder{
+    border:1px dashed var(--panel-line);
+  }
+  .news-placeholder h3, .news-placeholder p{ color:var(--muted-dim); }
+
+  .reading-list{ margin-top:50px; }
+  .reading-list h4{
+    font-family:var(--mono);
+    font-size:11.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:6px;
+  }
+  .reading-list-sub{ color:var(--muted); font-size:13.5px; margin-bottom:18px; }
+  .reading-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:16px;
+    padding:14px 0;
+    border-bottom:1px solid var(--panel-line);
+    font-size:14.5px;
+    flex-wrap:wrap;
+  }
+  .reading-item:first-of-type{ border-top:1px solid var(--panel-line); }
+  .reading-item a{
+    color:var(--text);
+    text-decoration:none;
+    border-bottom:1px solid var(--accent-dim);
+  }
+  .reading-item a:hover{ color:var(--accent); }
+  .reading-source{
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--muted-dim);
+    white-space:nowrap;
+  }
 
   /* ---------- Contact ---------- */
   .contact-grid{
@@ -523,6 +605,7 @@
     <button class="navtoggle" id="navToggle" aria-label="Toggle menu">&#9776;</button>
     <nav class="navlinks" id="navLinks">
       <a href="#mission">Mission</a>
+      <a href="#testimony">Testimony</a>
       <a href="#roadmap">Roadmap</a>
       <a href="#team">Team</a>
       <a href="#help">Ways to Help</a>
@@ -586,6 +669,46 @@
           <span class="n">Volunteer-run</span>
           <span class="d">Every hour comes from people who chose to give it</span>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONY -->
+  <section id="testimony">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">In Their Own Words</div>
+        <h2>What the crossing sounds like, from those who made it</h2>
+        <p>These accounts come from people who escaped North Korea. We share them because statistics don't carry what a single sentence, spoken plainly, can.</p>
+      </div>
+      <div class="testimony-grid">
+        <div class="testimony-card">
+          <blockquote>"In North Korea, our fate was to farm, and then die."</blockquote>
+          <span class="testimony-attr">— M., age 52</span>
+        </div>
+        <div class="testimony-card">
+          <blockquote>"I felt no fear, but it wasn't because I was brave. Everything happened so quickly."</blockquote>
+          <span class="testimony-attr">— S., age 29</span>
+        </div>
+        <div class="testimony-card">
+          <blockquote>"Would a real mom actually leave their child?"</blockquote>
+          <span class="testimony-attr">— H., age 45</span>
+        </div>
+        <div class="testimony-card">
+          <blockquote>"For 3,000 miles, it felt like I was holding my breath."</blockquote>
+          <span class="testimony-attr">— J., age 33</span>
+        </div>
+        <div class="testimony-card">
+          <blockquote>"I felt like I was losing everything, including my own body, to someone I didn't even know. I was only 18."</blockquote>
+          <span class="testimony-attr">— Y., age 24</span>
+        </div>
+        <div class="testimony-card">
+          <blockquote>"For three days, the broker paraded me around villages in northern China, and crowds of men gathered to bid on me. He finally found a man willing to pay enough — I was sold for $3,000."</blockquote>
+          <span class="testimony-attr">— K., age 31</span>
+        </div>
+      </div>
+      <div class="testimony-note">
+        <strong>A note on anonymity:</strong> names have been withheld and replaced with an initial and age to protect the individuals who shared these accounts.
       </div>
     </div>
   </section>
@@ -687,10 +810,35 @@
     <div class="wrap">
       <div class="section-head">
         <div class="eyebrow">Updates</div>
-        <h2>What we're reading and working on</h2>
-        <p>This section is brand new, same as the project. Updates will start appearing here as we get going — check back soon.</p>
+        <h2>What we're doing, and what we're reading</h2>
+        <p>Short updates from us come first — this is where we'll post as things happen. Below that, a short list of outside reporting worth your time.</p>
       </div>
-      <div class="news-empty">— no updates published yet —</div>
+
+      <!-- FROM US: add a new .news-item block above this comment for each new post.
+           Keep the newest entry at the top. Delete the placeholder entry below once you have a real one. -->
+      <div class="news-list">
+        <div class="news-item news-placeholder">
+          <span class="news-date">Month 2026</span>
+          <div>
+            <h3>[Placeholder — replace with your first update's headline]</h3>
+            <p>[Placeholder text. Replace the date above and this paragraph with 2–3 sentences on what happened and why it matters. Duplicate this whole .news-item block for each new post, newest at the top.]</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- WORTH READING: add a new .reading-item block for each link. -->
+      <div class="reading-list">
+        <h4>Worth Reading</h4>
+        <p class="reading-list-sub">Reporting and firsthand accounts from other sources, for context beyond our own updates.</p>
+        <div class="reading-item">
+          <a href="https://www.koreatimes.co.kr/foreignaffairs/northkorea/20260812/inside-hwangs-network-moving-defectors-cash-across-n-koreas-hardening-border" target="_blank" rel="noopener">Inside a defector broker's network — and how much harder, and costlier, the crossing has become</a>
+          <span class="reading-source">The Korea Times, Aug 2026</span>
+        </div>
+        <div class="reading-item">
+          <a href="https://www.nknews.org/2025/12/north-korean-defectors-report-record-high-life-satisfaction-but-concerns-linger/" target="_blank" rel="noopener">Defectors report record-high life satisfaction — but suicide rates remain more than double the national average</a>
+          <span class="reading-source">NK News, Dec 2025</span>
+        </div>
+      </div>
     </div>
   </section>
 
