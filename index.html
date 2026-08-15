@@ -462,7 +462,7 @@
     max-width:56ch;
   }
 
-  /* ---------- Pledge counter + support map ---------- */
+  /* ---------- Pledge counter ---------- */
   .pledge-count{
     margin-top:34px;
     padding-top:26px;
@@ -484,37 +484,6 @@
     color:var(--muted);
     letter-spacing:0.03em;
   }
-  .support-map{ margin-top:34px; }
-  .support-map h4{
-    font-family:var(--mono);
-    font-size:11.5px;
-    letter-spacing:0.08em;
-    text-transform:uppercase;
-    color:var(--accent);
-    margin-bottom:6px;
-  }
-  .support-bar-row{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    margin-top:12px;
-    font-family:var(--mono);
-    font-size:12.5px;
-  }
-  .support-bar-country{ width:120px; flex-shrink:0; color:var(--muted); }
-  .support-bar-track{
-    flex:1;
-    background:var(--panel-line);
-    height:7px;
-    border-radius:2px;
-    overflow:hidden;
-  }
-  .support-bar-fill{
-    height:100%;
-    background:var(--accent);
-    border-radius:2px;
-  }
-  .support-bar-count{ width:30px; text-align:right; color:var(--muted-dim); flex-shrink:0; }
 
   /* ---------- Roadmap ---------- */
   .roadmap-list{
@@ -794,7 +763,6 @@
       <div class="navgroup">
         <a href="#mission" class="navtop">Mission</a>
         <div class="navdrop">
-          <a href="#mission">Overview</a>
           <a href="#testimony">Testimony</a>
           <a href="#roadmap">Roadmap</a>
           <a href="#news">Updates</a>
@@ -803,7 +771,6 @@
       <div class="navgroup">
         <a href="#help" class="navtop">Ways to Help</a>
         <div class="navdrop">
-          <a href="#help">Overview</a>
           <a href="#donate">Donate</a>
           <a href="#pledge">Pledge</a>
         </div>
@@ -941,12 +908,6 @@
         <div class="pledge-count">
           <span class="pledge-count-number" id="pledgeCount">0</span>
           <span class="pledge-count-label">people have signed the pledge</span>
-        </div>
-
-        <div class="support-map">
-          <h4>Where Our Supporters Are</h4>
-          <p class="reading-list-sub">Based on the pledge signatures we've received so far. Updated by hand as new signatures come in.</p>
-          <div id="supportBars"></div>
         </div>
       </div>
 
@@ -1186,35 +1147,11 @@
     });
   });
 
-  // PLEDGE COUNT + SUPPORT MAP
-  // These are NOT pulled automatically from Netlify Forms (that would require exposing
-  // a private API key in public HTML, which isn't safe). Update this list by hand,
-  // using the counts from Site > Forms > pledge in your Netlify dashboard.
-  // Add a country name once for each cluster of signers.
-  const pledgeSupportData = [
-    // { country: 'South Korea', count: 0 },
-    // { country: 'United States', count: 0 },
-  ];
-
-  const pledgeTotal = pledgeSupportData.reduce((sum, row) => sum + row.count, 0);
-  document.getElementById('pledgeCount').textContent = pledgeTotal;
-
-  const supportBarsEl = document.getElementById('supportBars');
-  if (pledgeSupportData.length === 0) {
-    supportBarsEl.innerHTML = '<p class="reading-list-sub" style="margin-top:12px;">No signatures recorded yet, this fills in as pledges come in.</p>';
-  } else {
-    const maxCount = Math.max(...pledgeSupportData.map(row => row.count), 1);
-    supportBarsEl.innerHTML = pledgeSupportData
-      .slice()
-      .sort((a, b) => b.count - a.count)
-      .map(row => `
-        <div class="support-bar-row">
-          <span class="support-bar-country">${row.country}</span>
-          <span class="support-bar-track"><span class="support-bar-fill" style="width:${(row.count / maxCount) * 100}%"></span></span>
-          <span class="support-bar-count">${row.count}</span>
-        </div>
-      `).join('');
-  }
+  // PLEDGE COUNT
+  // NOT pulled automatically from Netlify Forms (that would require exposing a private
+  // API key in public HTML, which isn't safe). Update this number by hand using the
+  // count from Site > Forms > pledge in your Netlify dashboard.
+  document.getElementById('pledgeCount').textContent = 0;
 </script>
 
 </body>
