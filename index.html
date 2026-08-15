@@ -141,6 +141,37 @@
   }
   .navlinks a:hover::after{ width:100%; }
 
+  .navgroup{ position:relative; }
+  .navgroup .navdrop a::after{ content:none; }
+  .navdrop{
+    position:absolute;
+    top:100%;
+    left:50%;
+    transform:translateX(-50%) translateY(6px);
+    background:var(--panel);
+    border:1px solid var(--panel-line);
+    padding:8px 0;
+    min-width:180px;
+    display:flex;
+    flex-direction:column;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .18s ease, transform .18s ease;
+    z-index:60;
+  }
+  .navgroup:hover .navdrop,
+  .navgroup:focus-within .navdrop{
+    opacity:1;
+    pointer-events:auto;
+    transform:translateX(-50%) translateY(2px);
+  }
+  .navdrop a{
+    padding:10px 18px;
+    white-space:nowrap;
+    color:var(--muted);
+  }
+  .navdrop a:hover{ background:var(--bg); color:var(--text); }
+
   .navtoggle{ display:none; background:none; border:none; color:var(--text); font-size:22px; cursor:pointer; }
 
   @media (max-width:760px){
@@ -154,9 +185,22 @@
       gap:20px;
       transform:translateY(-130%);
       transition:transform .3s ease;
+      align-items:flex-start;
     }
     .navlinks.open{ transform:translateY(0); }
     .navtoggle{ display:block; }
+    .navgroup{ width:100%; }
+    .navdrop{
+      position:static;
+      opacity:1;
+      pointer-events:auto;
+      transform:none;
+      border:none;
+      background:none;
+      padding:10px 0 0 14px;
+      min-width:0;
+    }
+    .navdrop a{ padding:6px 0; }
   }
 
   /* ---------- Hero ---------- */
@@ -402,6 +446,75 @@
     line-height:1.6;
   }
   .hp-field{ position:absolute; left:-9999px; }
+
+  /* ---------- Donate ---------- */
+  .donate-box{
+    border:1px solid var(--panel-line);
+    background:var(--panel);
+    padding:32px;
+    max-width:640px;
+  }
+  .donate-note{
+    margin-top:20px;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.6;
+    max-width:56ch;
+  }
+
+  /* ---------- Pledge counter + support map ---------- */
+  .pledge-count{
+    margin-top:34px;
+    padding-top:26px;
+    border-top:1px solid var(--panel-line);
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .pledge-count-number{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:34px;
+    color:var(--accent);
+  }
+  .pledge-count-label{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--muted);
+    letter-spacing:0.03em;
+  }
+  .support-map{ margin-top:34px; }
+  .support-map h4{
+    font-family:var(--mono);
+    font-size:11.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:6px;
+  }
+  .support-bar-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-top:12px;
+    font-family:var(--mono);
+    font-size:12.5px;
+  }
+  .support-bar-country{ width:120px; flex-shrink:0; color:var(--muted); }
+  .support-bar-track{
+    flex:1;
+    background:var(--panel-line);
+    height:7px;
+    border-radius:2px;
+    overflow:hidden;
+  }
+  .support-bar-fill{
+    height:100%;
+    background:var(--accent);
+    border-radius:2px;
+  }
+  .support-bar-count{ width:30px; text-align:right; color:var(--muted-dim); flex-shrink:0; }
 
   /* ---------- Roadmap ---------- */
   .roadmap-list{
@@ -671,14 +784,30 @@
     </a>
     <button class="navtoggle" id="navToggle" aria-label="Toggle menu">&#9776;</button>
     <nav class="navlinks" id="navLinks">
-      <a href="#mission">Mission</a>
-      <a href="#testimony">Testimony</a>
-      <a href="#pledge">Pledge</a>
-      <a href="#roadmap">Roadmap</a>
-      <a href="#team">Team</a>
-      <a href="#help">Ways to Help</a>
-      <a href="#news">Updates</a>
-      <a href="#contact">Contact</a>
+      <div class="navgroup">
+        <a href="#team" class="navtop">Team</a>
+        <div class="navdrop">
+          <a href="#team">Who's Behind This</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="navgroup">
+        <a href="#mission" class="navtop">Mission</a>
+        <div class="navdrop">
+          <a href="#mission">Overview</a>
+          <a href="#testimony">Testimony</a>
+          <a href="#roadmap">Roadmap</a>
+          <a href="#news">Updates</a>
+        </div>
+      </div>
+      <div class="navgroup">
+        <a href="#help" class="navtop">Ways to Help</a>
+        <div class="navdrop">
+          <a href="#help">Overview</a>
+          <a href="#donate">Donate</a>
+          <a href="#pledge">Pledge</a>
+        </div>
+      </div>
     </nav>
   </div>
 </header>
@@ -781,6 +910,21 @@
     </div>
   </section>
 
+  <!-- DONATE -->
+  <section id="donate">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Ways to Help</div>
+        <h2>Donate</h2>
+        <p>Your contribution goes directly toward safe passage coordination, resettlement funds, mentorship, and psychological recovery support.</p>
+      </div>
+      <div class="donate-box">
+        <a href="#" class="btn btn-primary" id="donateButton"><!-- TODO: replace # with your real payment link (Stripe, PayPal, Zeffy, etc.) -->Donate now</a>
+        <p class="donate-note">If we're ever unable to direct your support toward the initiative at the time it's given, funds and outreach will be rerouted through partner organizations already doing this work, rather than held or delayed.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- PLEDGE -->
   <section id="pledge" class="pledge-section">
     <div class="wrap pledge-grid">
@@ -793,6 +937,17 @@
         <p>We cannot know what the crossing has cost you. What we can do is keep showing up, in whatever ways are available to us, long after the story stops making headlines.</p>
         <p>This is what we are committing to: funding what we can, connecting who we can, and staying involved for as long as it takes.</p>
         <div class="pledge-signoff">함께, 자유를.</div>
+
+        <div class="pledge-count">
+          <span class="pledge-count-number" id="pledgeCount">0</span>
+          <span class="pledge-count-label">people have signed the pledge</span>
+        </div>
+
+        <div class="support-map">
+          <h4>Where Our Supporters Are</h4>
+          <p class="reading-list-sub">Based on the pledge signatures we've received so far. Updated by hand as new signatures come in.</p>
+          <div id="supportBars"></div>
+        </div>
       </div>
 
       <div class="pledge-form-wrap">
@@ -1030,6 +1185,36 @@
       alert('Something went wrong submitting the pledge. Please try again, or email us directly.');
     });
   });
+
+  // PLEDGE COUNT + SUPPORT MAP
+  // These are NOT pulled automatically from Netlify Forms (that would require exposing
+  // a private API key in public HTML, which isn't safe). Update this list by hand,
+  // using the counts from Site > Forms > pledge in your Netlify dashboard.
+  // Add a country name once for each cluster of signers.
+  const pledgeSupportData = [
+    // { country: 'South Korea', count: 0 },
+    // { country: 'United States', count: 0 },
+  ];
+
+  const pledgeTotal = pledgeSupportData.reduce((sum, row) => sum + row.count, 0);
+  document.getElementById('pledgeCount').textContent = pledgeTotal;
+
+  const supportBarsEl = document.getElementById('supportBars');
+  if (pledgeSupportData.length === 0) {
+    supportBarsEl.innerHTML = '<p class="reading-list-sub" style="margin-top:12px;">No signatures recorded yet, this fills in as pledges come in.</p>';
+  } else {
+    const maxCount = Math.max(...pledgeSupportData.map(row => row.count), 1);
+    supportBarsEl.innerHTML = pledgeSupportData
+      .slice()
+      .sort((a, b) => b.count - a.count)
+      .map(row => `
+        <div class="support-bar-row">
+          <span class="support-bar-country">${row.country}</span>
+          <span class="support-bar-track"><span class="support-bar-fill" style="width:${(row.count / maxCount) * 100}%"></span></span>
+          <span class="support-bar-count">${row.count}</span>
+        </div>
+      `).join('');
+  }
 </script>
 
 </body>
