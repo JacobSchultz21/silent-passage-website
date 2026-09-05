@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Silent Passage Project</title>
 <meta name="description" content="Silent Passage Project supports people escaping North Korea through information, advocacy, and community.">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%230B1420'/%3E%3Cpath d='M6,29 C14,29 12,19 20,17 C28,15 26,8 34,7' fill='none' stroke='%238CA0B3' stroke-width='2.6' stroke-linecap='round'/%3E%3Ccircle cx='34' cy='7' r='3.4' fill='%23E8A54B'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%230B1420'/%3E%3Ccircle cx='20' cy='22' r='12' fill='none' stroke='%23E8A54B' stroke-width='2'/%3E%3Ccircle cx='29' cy='11' r='2' fill='%23E8A54B'/%3E%3Cg fill='%238CA0B3' transform='translate(20,22) scale(0.13)'%3E%3Cpath d='M -6,8 C -22,-4 -42,0 -46,12 C -34,12 -18,16 -6,14 Z'/%3E%3Cpath d='M 6,8 C 22,-4 42,0 46,12 C 34,12 18,16 6,14 Z'/%3E%3Cellipse cx='0' cy='14' rx='14' ry='10'/%3E%3Cpath d='M -2,6 C -10,-4 -10,-18 -2,-26 C 2,-30 8,-32 14,-30 L 24,-34 L 14,-24 C 10,-22 6,-16 4,-8 Z'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -100,6 +100,12 @@
     stroke-linecap:round;
   }
   .logo-icon .lp-dot{ fill:var(--accent); }
+  .logo-icon .lp-ring{
+    fill:none;
+    stroke:var(--accent);
+    stroke-width:2;
+  }
+  .logo-icon .lp-crane{ fill:var(--muted); }
   .logo-text{
     font-family:var(--serif);
     font-size:18px;
@@ -746,8 +752,14 @@
   <div class="nav">
     <a href="#top" class="logo" aria-label="Silent Passage Project home">
       <svg class="logo-icon" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path class="lp-path" d="M4,30 C13,30 11,19 20,17 C29,15 27,7 35,6" />
-        <circle class="lp-dot" cx="35" cy="6" r="2.6" />
+        <circle class="lp-ring" cx="20" cy="22" r="12" />
+        <circle class="lp-dot" cx="29" cy="11" r="2" />
+        <g class="lp-crane" transform="translate(20,22) scale(0.13)">
+          <path d="M -6,8 C -22,-4 -42,0 -46,12 C -34,12 -18,16 -6,14 Z"/>
+          <path d="M 6,8 C 22,-4 42,0 46,12 C 34,12 18,16 6,14 Z"/>
+          <ellipse cx="0" cy="14" rx="14" ry="10"/>
+          <path d="M -2,6 C -10,-4 -10,-18 -2,-26 C 2,-30 8,-32 14,-30 L 24,-34 L 14,-24 C 10,-22 6,-16 4,-8 Z"/>
+        </g>
       </svg>
       <span class="logo-text">Silent Passage<span class="logo-sub">Project</span></span>
     </a>
