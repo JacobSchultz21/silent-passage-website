@@ -927,10 +927,11 @@
         <h3>Sign the pledge</h3>
         <p class="pledge-sub">Add your name. We'll follow up with ways to get involved based on how you'd like to help.</p>
 
-        <form name="pledge" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="pledgeForm">
-          <input type="hidden" name="form-name" value="pledge">
+        <form method="POST" action="https://formsubmit.co/hello@silentpassageproject.org" id="pledgeForm">
+          <input type="hidden" name="_subject" value="New pledge signed on silentpassageproject.org">
+          <input type="hidden" name="_captcha" value="false">
           <p class="hp-field">
-            <label>Leave this field blank: <input name="bot-field"></label>
+            <label>Leave this field blank: <input type="text" name="_honey"></label>
           </p>
 
           <div class="field-row">
@@ -1166,10 +1167,14 @@
   pledgeForm.addEventListener('submit', function(e){
     e.preventDefault();
     const formData = new FormData(pledgeForm);
-    fetch('/', {
+    fetch('https://formsubmit.co/ajax/hello@silentpassageproject.org', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(formData).toString()
+      headers: { 'Accept': 'application/json' },
+      body: formData
+    })
+    .then(response => {
+      if (!response.ok) throw new Error('Submission failed');
+      return response.json();
     })
     .then(() => {
       pledgeForm.style.display = 'none';
@@ -1181,9 +1186,9 @@
   });
 
   // PLEDGE COUNT
-  // NOT pulled automatically from Netlify Forms (that would require exposing a private
-  // API key in public HTML, which isn't safe). Update this number by hand using the
-  // count from Site > Forms > pledge in your Netlify dashboard.
+  // NOT pulled automatically \u2014 FormSubmit doesn't provide a dashboard or counter API.
+  // Update this number by hand, counting from the pledge notification emails
+  // arriving at hello@silentpassageproject.org.
   document.getElementById('pledgeCount').textContent = 39;
 </script>
 
