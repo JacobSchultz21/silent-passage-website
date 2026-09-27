@@ -508,6 +508,28 @@
   .roadmap-note strong{ color:var(--text); }
   .roadmap-note a{ color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent-dim); }
 
+  /* ---------- Timeline ---------- */
+  .timeline{ list-style:none; position:relative; max-width:720px; margin-top:10px; }
+  .tl-item:not(:last-child)::after{
+    content:""; position:absolute; left:7px; top:14px; bottom:-6px;
+    width:1px; background:var(--panel-line);
+  }
+  .tl-item{ position:relative; padding:0 0 40px 44px; }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-item::before{
+    content:""; position:absolute; left:0; top:6px; z-index:1;
+    width:15px; height:15px; border-radius:50%;
+    background:var(--accent); border:3px solid var(--bg);
+    box-shadow:0 0 0 1px var(--accent-dim);
+  }
+  .tl-item.upcoming::before{ background:var(--bg); }
+  .tl-date{
+    font-family:var(--mono); font-size:12px; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--accent); display:block; margin-bottom:6px;
+  }
+  .tl-item h3{ font-family:var(--serif); font-weight:500; font-size:20px; margin-bottom:6px; }
+  .tl-item p{ color:var(--muted); font-size:14.5px; max-width:56ch; }
+
   /* ---------- Team ---------- */
   .team-grid{
     display:grid;
@@ -742,6 +764,7 @@
         <div class="navdrop">
           <a href="#testimony">Testimony</a>
           <a href="#roadmap">Roadmap</a>
+          <a href="#timeline">Timeline</a>
           <a href="#news">Updates</a>
         </div>
       </div>
@@ -959,6 +982,38 @@
           <p>Escapees suffer from PTSD and cognitive dissonance due to years of state propaganda. We provide access to therapy and language training, delivered by licensed professionals.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE: add a new <li class="tl-item"> for each milestone, oldest first. Use class "tl-item upcoming" for goals not yet reached. -->
+  <section id="timeline">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Our Story So Far</div>
+        <h2>Timeline</h2>
+      </div>
+      <ol class="timeline">
+        <li class="tl-item">
+          <span class="tl-date">December 2025</span>
+          <h3>Founder arrives in Korea</h3>
+          <p>In a small restaurant on the outskirts of Seoul, a brief conversation with its North Korean owner inspires this organization.</p>
+        </li>
+        <li class="tl-item">
+          <span class="tl-date">June 2026</span>
+          <h3>Silent Passage Project begins</h3>
+          <p>A small team of volunteers comes together to start the work.</p>
+        </li>
+        <li class="tl-item">
+          <span class="tl-date">September 2026</span>
+          <h3>Incorporated as a registered nonprofit</h3>
+          <p>Silent Passage Project is incorporated as a registered nonprofit.</p>
+        </li>
+        <li class="tl-item upcoming">
+          <span class="tl-date">Next</span>
+          <h3>Fundraiser events</h3>
+          <p>Our first fundraising events are in the works. Details will be posted here.</p>
+        </li>
+      </ol>
     </div>
   </section>
 
